@@ -40,6 +40,10 @@ module.exports.deleteAll = (req, res) => {
 module.exports.read = (req, res) => {
   Task.findById(req.params.taskID, (err, task) => {
     if (err) { res.send(err); }
+    if (!task) {
+      res.status(404).send({message: `Task with id:${req.params.taskID} not found`})
+      return;
+    }
     res.json(responseTask(req, task));
   });
 };
