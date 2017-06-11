@@ -10,6 +10,10 @@ const TaskSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  order: {
+    type: Number,
+    default: 0,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

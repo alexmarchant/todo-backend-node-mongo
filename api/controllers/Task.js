@@ -10,6 +10,7 @@ function responseTask(req, task) {
   return {
     id: task._id,
     title: task.title,
+    order: task.order,
     url: url,
     completed: task.completed,
     createdAt: task.createdAt,
