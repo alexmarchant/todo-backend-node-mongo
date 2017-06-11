@@ -8,5 +8,6 @@ module.exports = (app) => {
 
   app.route('/tasks/:taskID')
     .get(controller.read)
+    .patch(controller.update)
     .delete(controller.delete);
 };

@@ -3,7 +3,9 @@ const _ = require('lodash');
 const Task = mongoose.model('Tasks');
 
 function responseTask(req, task) {
-  const protocol = req.headers.host === 'localhost:3000' ? 'http' : 'https';
+  const protocol = process.env.NODE_ENV === 'production' ?
+    'https' :
+    'http';
   const url = `${protocol}://${req.headers.host}/tasks/${task._id}`; 
   return {
     id: task._id,
@@ -45,6 +47,22 @@ module.exports.read = (req, res) => {
   }
 
   Task.findById(req.params.taskID, (err, task) => {
+    if (err) { res.send(err); }
+    if (!task) {
+      res.status(404).send({message: `Task with id:${req.params.taskID} not found`})
+      return;
+    }
+    res.json(responseTask(req, task));
+  });
+};
+
+module.exports.update = (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.taskID)) {
+    res.status(400).send({message: `${req.params.taskID} is not a valid ID`})
+    return;
+  }
+
+  Task.findOneAndUpdate(req.params.taskID, req.body, {new: true}, (err, task) => {
     if (err) { res.send(err); }
     if (!task) {
       res.status(404).send({message: `Task with id:${req.params.taskID} not found`})
