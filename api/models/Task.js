@@ -6,6 +6,10 @@ const TaskSchema = new Schema({
     type: String,
     required: 'Please enter the title of the task',
   },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

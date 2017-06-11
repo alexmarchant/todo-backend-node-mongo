@@ -8,6 +8,7 @@ function responseTask(req, task) {
     id: task._id,
     title: task.title,
     url: url,
+    completed: task.completed,
     createdAt: task.createdAt,
   };
 }
