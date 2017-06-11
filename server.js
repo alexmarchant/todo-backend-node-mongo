@@ -21,11 +21,21 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
+  //intercepts OPTIONS method
+  if ('OPTIONS' === req.method) {
+    res.send(200);
+  }
   next();
 });
 
 // Routing
 routes(app);
+
+// Better error message
+app.use((req, res) => {
+  res.status(404).send({url: req.originalUrl + ' not found'})
+});
 
 // Start server
 app.listen(port);
