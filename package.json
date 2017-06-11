@@ -1,13 +1,18 @@
 {
   "name": "todo-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "repository": {},
   "license": "MIT",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "mongoose": "^4.10.5"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
