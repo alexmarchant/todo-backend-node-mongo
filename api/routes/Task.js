@@ -1,4 +1,4 @@
-const todoListController = require('../controllers/todoListController');
+const todoListController = require('../controllers/Task');
 
 module.exports = (app) => {
   app.route('/')
