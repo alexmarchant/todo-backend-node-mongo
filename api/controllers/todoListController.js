@@ -15,3 +15,10 @@ module.exports.create = (req, res) => {
     res.json(task);
   });
 };
+
+module.exports.deleteAll = (req, res) => {
+  Task.remove({}, (err) => {
+    if (err) { res.send(err); }
+    res.json({message: 'All tasks deleted'});
+  });
+};
