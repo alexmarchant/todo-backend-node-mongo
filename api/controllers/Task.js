@@ -35,3 +35,17 @@ module.exports.deleteAll = (req, res) => {
     res.json({message: 'All tasks deleted'});
   });
 };
+
+module.exports.read = (req, res) => {
+  Task.findById(req.params.taskID, (err, task) => {
+    if (err) { res.send(err); }
+    res.json(responseTask(req, task));
+  });
+};
+
+module.exports.delete = (req, res) => {
+  Task.remove({_id: req.params.taskID}, (err) => {
+    if (err) { res.send(err); }
+    res.json({message: 'Task deleted'});
+  });
+};
