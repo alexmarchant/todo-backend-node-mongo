@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const TaskSchema = new Schema({
-  name: {
+  title: {
     type: String,
-    required: 'Please enter the name of the task',
+    required: 'Please enter the title of the task',
   },
   createdAt: {
     type: Date,
