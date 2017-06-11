@@ -3,7 +3,8 @@ const _ = require('lodash');
 const Task = mongoose.model('Tasks');
 
 function responseTask(req, task) {
-  const url = `${req.protocol}://${req.headers.host}/tasks/${task._id}`; 
+  const protocol = req.headers.host === 'localhost:3000' ? 'http' : 'https';
+  const url = `${protocol}://${req.headers.host}/tasks/${task._id}`; 
   return {
     id: task._id,
     title: task.title,
