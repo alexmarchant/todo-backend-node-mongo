@@ -8,6 +8,6 @@
     "express": "^4.15.3"
   },
   "scripts": {
-    "run": "node index.js"
+    "start": "node index.js"
   }
 }
