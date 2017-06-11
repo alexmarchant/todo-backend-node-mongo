@@ -38,6 +38,11 @@ module.exports.deleteAll = (req, res) => {
 };
 
 module.exports.read = (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.taskID)) {
+    res.status(400).send({message: `${req.params.taskID} is not a valid ID`})
+    return;
+  }
+
   Task.findById(req.params.taskID, (err, task) => {
     if (err) { res.send(err); }
     if (!task) {
