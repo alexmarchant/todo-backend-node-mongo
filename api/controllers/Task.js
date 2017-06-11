@@ -54,6 +54,11 @@ module.exports.read = (req, res) => {
 };
 
 module.exports.delete = (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.taskID)) {
+    res.status(400).send({message: `${req.params.taskID} is not a valid ID`})
+    return;
+  }
+
   Task.remove({_id: req.params.taskID}, (err) => {
     if (err) { res.send(err); }
     res.json({message: 'Task deleted'});
